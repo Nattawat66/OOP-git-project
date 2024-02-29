@@ -1,6 +1,82 @@
+# from io import BytesIO
+# import streamlit as st
+# from PIL import Image, ImageEnhance,ImageDraw
+# from rembg import remove
+# import base64
+
+# def set_background(image_url):
+#     image_url_str = f'url("{image_url}")'
+#     css = f"""
+#     <style>
+#     .stApp {{
+#         background-image: {image_url_str};
+#         background-size: cover;
+#     }}
+#     </style>
+#     """
+#     st.markdown(css, unsafe_allow_html=True)
+
+
+# ##ใช้งานตรงนี้
+# set_background("https://wallpapers.com/images/hd/minimalist-earth-and-moon-ol93aaxwrqhygnb9.jpg")
+
+# def convert_image(img):
+#     buf = BytesIO()
+#     img.save(buf, format="PNG")
+#     byte_im = buf.getvalue()
+#     return byte_im
+
+# st.title("Background Remover")
+# uploaded_image = st.file_uploader("Upload Image", type=["jpg", "png"])
+
+# if uploaded_image is not None:
+#     original_image = Image.open(uploaded_image)
+#     original_width, original_height = original_image.size
+    
+#     col1, col2,col3 = st.columns(3)
+#     with col1:
+#         st.header("Your Image")
+#         st.image(original_image, caption="Uploaded Image", use_column_width=True)
+#         with col2:
+#             fixed = remove(original_image)
+#             st.header("Remove BG")
+#             st.image(fixed, caption="Processed Image", use_column_width=True)
+#             selected_format = st.selectbox("Select Download Format", ["PNG", "JPG"])
+#             downloadable_image = convert_image(fixed)
+#             if selected_format == "PNG":
+#                 st.download_button(
+#                     "Download Image", downloadable_image, "removebg.png", "image/png", key="download_button_1"
+#                 )
+#             elif selected_format == "JPG":
+#                 st.download_button(
+#                     "Download Image", downloadable_image, "removebg.jpg", "image/jpeg", key="download_button_2"
+#                 )
+#     with col3:
+#         fixed = remove(original_image)
+#         bg_color = st.color_picker("Choose Background Color", "#ffffff")
+#         bg_image = Image.new("RGB", (original_width, original_height), bg_color)
+#         bg_image.paste(fixed, (0, 0), fixed)
+#         st.image(bg_image, caption="Background Color Applied", use_column_width=True)
+#         selected_format = st.selectbox("Select Download", ["PNG", "JPG"])
+#         downloadable_image = convert_image(bg_image)
+#         if selected_format == "PNG":
+#             st.download_button(
+#                 "Download Image", downloadable_image, "removebg.png", "image/png", key="download_button_3"
+#             )
+#         elif selected_format == "JPG":
+#             st.download_button(
+#                 "Download Image", downloadable_image, "removebg.jpg", "image/jpeg", key="download_button_4"
+#             )
+
+
+
+
+
+
+
 from io import BytesIO
 import streamlit as st
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageEnhance,ImageDraw
 from rembg import remove
 import base64
 
@@ -27,24 +103,21 @@ def convert_image(img):
     return byte_im
 
 st.title("Background Remover")
-uploaded_image = st.file_uploader("Upload Image", type=["jpg", "png"])
+uploaded_image = st.file_uploader("Upload Image",accept_multiple_files=True, type=["jpg", "png"])
 
 if uploaded_image is not None:
     original_image = Image.open(uploaded_image)
     original_width, original_height = original_image.size
     
-    col1, col2 = st.columns(2)
+    col1, col2,col3 = st.columns(3)
     with col1:
-        st.header("Original Image")
+        st.header("Your Image")
         st.image(original_image, caption="Uploaded Image", use_column_width=True)
-        selected_format = st.selectbox("Select Download Format", ["PNG", "JPG"])
-
-    if st.button("Remove Background"):
-        
         with col2:
             fixed = remove(original_image)
-            st.header("Remove BG Image")
+            st.header("Remove BG")
             st.image(fixed, caption="Processed Image", use_column_width=True)
+            selected_format = st.selectbox("Select Download Format", ["PNG", "JPG"])
             downloadable_image = convert_image(fixed)
             if selected_format == "PNG":
                 st.download_button(
@@ -54,6 +127,19 @@ if uploaded_image is not None:
                 st.download_button(
                     "Download Image", downloadable_image, "removebg.jpg", "image/jpeg", key="download_button_2"
                 )
-            print("56")    
-                
-
+    with col3:
+        fixed = remove(original_image)
+        bg_color = st.color_picker("Choose Background Color", "#ffffff")
+        bg_image = Image.new("RGB", (original_width, original_height), bg_color)
+        bg_image.paste(fixed, (0, 0), fixed)
+        st.image(bg_image, caption="Background Color Applied", use_column_width=True)
+        selected_format = st.selectbox("Select Download", ["PNG", "JPG"])
+        downloadable_image = convert_image(bg_image)
+        if selected_format == "PNG":
+            st.download_button(
+                "Download Image", downloadable_image, "removebg.png", "image/png", key="download_button_3"
+            )
+        elif selected_format == "JPG":
+            st.download_button(
+                "Download Image", downloadable_image, "removebg.jpg", "image/jpeg", key="download_button_4"
+            )   
