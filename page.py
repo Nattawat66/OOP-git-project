@@ -1,6 +1,6 @@
 import streamlit as st
-from removebgpage import show as remove_page
-from pickupcolorpage import show as pickupcolor_page
+from removebgpage import main as remove_page
+from pickupcolorpage import main as pickupcolor_page
 
 def set_background(image_url):
     image_url_str = f'url("{image_url}")'
@@ -24,7 +24,7 @@ def hide_bar():
     st.markdown(hide_st_style, unsafe_allow_html=True)    
 
 def main():
-    hide_bar()    
+    #hide_bar()    
     set_background("https://wallpaper.dog/large/20474170.jpg")
 
     st.sidebar.title("Menu")
