@@ -17,5 +17,5 @@ Image Color Picker
 ....
 
 ## video:
-* https://www.youtube.com/watch?v=h2zcCnroL5o&ab_channel=IamanEgg
+* https://www.youtube.com/watch?v=zvzhj1AMKQU&ab_channel=IamanEgg
 
