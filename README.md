@@ -1,7 +1,7 @@
 # oop-project
 
 ## Author:
-* name,id: Nattawat Mahachanwong 66114540193
+* name,id: Nattawat Mahachanwong 66114540241
 * name,id: Chinnawat Ngoseth 66114540193
 
 ## technology: streamlit
