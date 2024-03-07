@@ -5,8 +5,8 @@
 * name,id: Chinnawat Ngoseth 66114540193
 
 ## technology: streamlit
-Remove Backgound From Image
-Image Color Picker
+* Remove Backgound From Image
+* Image Color Picker
 ## application description:
 
 * เครื่องมือออนไลน์สำหรับผู้ที่ต้องการลบภาพพื้นหลัง
